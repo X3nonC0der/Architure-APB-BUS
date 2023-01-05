@@ -2,25 +2,25 @@
 module UART (
     input [10:0] baud_final_value, //baud rate value
     input [7:0] tx_fifo_dataIn, //data to be sent
-    input clk, 
-    input reset,
+    input clk, //Clock signal of UART
+    input reset,// Reset signal of UART 
     input tx_fifo_writeEn, //write enable for tx fifo
     input rx_fifo_readEn, //read enable for rx fifo
     input rx, //data from rx
     output tx_fifo_Full, //tx fifo full
-    output tx, 
-    output rx_fifo_Empty, 
+    output tx, // Transmitter output signal for UART
+    output rx_fifo_Empty, // Output signal to detect if the receiver buffer is empty  
     output [7:0] rx_fifo_dataOut //data from rx fifo
 );
 
   // Baud Generator Module
   module baud_gen (
-      input clk,
-      reset,
-      input [10:0] divsr,  
-      output reg tick
+      input clk,// baud generator clock
+      reset,// reset signal for the clock
+      input [10:0] divsr, //max baudrate 9600 as div =650 
+      output reg tick //sampling ticks to estimate the middle point of each bit
   );
-    reg [10:0] count = 11'b0;
+    reg [10:0] count = 11'b0; //Counter for the max baudrate
     always @(posedge clk, posedge reset) begin
       if (reset) count = 0;
       else begin
@@ -45,13 +45,13 @@ module UART (
   // Fifo Module
   module fifo (
       clk,
-      dataIn,
-      readEn,
-      writeEn,
-      dataOut,
-      reset,
-      EMPTY,
-      FULL
+      dataIn,// FIFO data input
+      readEn, // FIFO enable read signal
+      writeEn, // FIFO enable write signal
+      dataOut, //FIFO data output
+      reset, //FIFO reset signal
+      EMPTY,// FIFO empty signal, to detect if the bufefr is empty or not
+      FULL //FIFO full signal, to detect if the bufefr is full or not
   );
 
     input clk, readEn, writeEn, reset;
@@ -59,13 +59,13 @@ module UART (
     input [7:0] dataIn;
 
     output reg [7:0] dataOut;
-    reg [3:0] counter = 0;
-    reg [7:0] FIFO[0:7];
-    reg [2:0] readPtr = 0, writePtr = 0;
+    reg [3:0] counter = 0; //Counter for counting number bits in FIFO(buffer)
+    reg [7:0] FIFO[0:7]; // 2D reg, which contains 8 places each of 8 bits, so total is 32
+    reg [2:0] readPtr = 0, writePtr = 0; // Reading and Writing pointers
     //assign empty if counter is 0
-    assign EMPTY = (counter == 0) ? 1'b1 : 1'b0;
+    assign EMPTY = (counter == 0) ? 1'b1 : 1'b0; //If counter equals 0 it means that the buffer is empty, and If counter doesn't equal 0 it means that the buffer is not empty
     //assign full if counter is 8
-    assign FULL  = (counter == 8) ? 1'b1 : 1'b0;
+    assign FULL  = (counter == 8) ? 1'b1 : 1'b0; //If counter equals 8 it means that the buffer is full, and If counter doesn't equal 8 it means that the buffer is not full
 
     always @(posedge clk) begin
       if (reset) begin
@@ -107,17 +107,17 @@ module UART (
 
   // Transmitter Module
   module Transmitter #(
-      parameter DBit = 8,
+      parameter DBit = 8, //data bits
       SBit = 16  //to make 1 stop bit 
   ) (
       input tx_start,
-      s_tick,
-      input [7:0] tx_dataIn,
-      output reg tx_done_tick,
-      tx_dataOut
+      s_tick, //sampling tick
+      input [7:0] tx_dataIn, //Transmitter 8 bits data input
+      output reg tx_done_tick, //transmitter done tick
+      tx_dataOut // transmitter signal data output
   );
-    reg [1:0] state;
-    reg [3:0] tickCounter;
+    reg [1:0] state; // Transmitter states
+    reg [3:0] tickCounter; //Counter for counting sampling ticks
     reg [2:0] n; //counter to count data bits
     localparam IDLE = 0, Start = 1, Data = 2, Stop = 3; //states
     reg [7:0] data;  //buffer
@@ -137,11 +137,11 @@ module UART (
           if(tx_start==1) // fifo is not empty
                 begin
             tx_done_tick <= 1;
-            #15 tx_done_tick <= 0;
-            state <= Start;
-            tickCounter <= 0;
+            #15 tx_done_tick <= 0;  //Wait 15 cycles and set the dine tick to 0
+            state <= Start; //Set the state to SART state
+            tickCounter <= 0; // Set tick counter to 0 to start counting in the START state
             n <= 0;
-            #5 data = tx_dataIn;
+            #5 data = tx_dataIn; //Wait 5 cycles and get the data
           end
         end
         Start: begin
@@ -287,4 +287,4 @@ module UART (
 
 
 endmodule
-;
+

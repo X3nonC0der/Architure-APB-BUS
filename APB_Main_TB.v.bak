@@ -14,9 +14,9 @@ module APB_MAIN_TB;
   // Reset signal for the APB protocol
   reg Reset;
   // Address of the memory location to be written to
-  reg [31:0] write_paddr;
+  reg [4:0] write_paddr;
   // Address of the memory location to be read from
-  reg [3:0] apb_read_paddr;
+  reg [4:0] apb_read_paddr;
   // Data to be written to the specified memory location
   reg [31:0] write_data;
   // Select signal for the APB slave peripheral
