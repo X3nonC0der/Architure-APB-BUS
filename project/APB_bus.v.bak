@@ -13,7 +13,7 @@ module APB_Bridge (
     // Select signal for the slave peripheral
     input [1:0] Psel,
     // Address of the memory location to be written to by the master
-    input [31:0] write_paddr_Master,
+    input [4:0] write_paddr_Master,
     // Address of the memory location to be read from by the master
     read_paddr_Master,
     // Data to be written to the specified memory location by the master
@@ -35,7 +35,7 @@ module APB_Bridge (
     // paddr = write_paddr_Master or read_paddr_Master address depend on pwrite coming from master 
     output reg [31:0] pwdata,
     // Address for the slave
-    output reg [ 31:0] paddr,
+    output reg [ 4:0] paddr,
     // Select signal for the first slave peripheral
     output reg        PSEL1,
     // Select signal for the second slave peripheral

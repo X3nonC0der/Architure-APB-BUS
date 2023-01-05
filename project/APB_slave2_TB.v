@@ -2,7 +2,7 @@
 `timescale 1ns / 1ns
 
 // Main testbench module for the APB Protocol
-module APB_MAIN_TB;
+module APB_slave2_TB;
   // Clock signal for the APB protocol
   reg pclk;
   // Enable signal for the APB protocol
@@ -25,6 +25,8 @@ module APB_MAIN_TB;
   reg rx = 1;
   // Wire to output the read data from the APB slave peripheral
   wire [31:0] apb_read_data_out;
+  wire [3:0] PSTRB;
+  
 
   // Instantiate the APB Protocol module
   APB_Protcol APB_Protcol_1 (
@@ -38,8 +40,14 @@ module APB_MAIN_TB;
       write_data,
       Psel,
       apb_read_data_out,
+      PSTRB,
       rx
   );
+// Clock generator
+always
+  begin 
+  #5 pclk <= ~pclk;
+end
 
   initial begin
     // Initialize input signals
@@ -52,7 +60,7 @@ module APB_MAIN_TB;
     apb_read_paddr = 32'h00000000;
     write_data = 32'h00000000;
     Psel = 2'b00;
-
+    
     // Wait for the APB protocol module to reset
     // Assert the reset signal
     // Reset = 1'b1;
@@ -61,24 +69,25 @@ module APB_MAIN_TB;
     // Reset = 1'b0;
     // Wait for the APB protocol module to stabilize
     #10;
-    // Select the first slave peripheral
-    Psel = 2'b01;
+    // Select the second slave peripheral
+    Psel = 2'b10;
     transfer = 1'b1;
     // Wait for the APB protocol module to stabilize
-    #30;
-
-    // Write a value to the slave peripheral's memory
+    #505;
+    // Write a value to the UART peripheral's memory
     penable = 1'b1;
     pwrite = 1'b1;
-    write_paddr = 1'b1;
     write_data = 32'hDEAD2023;
-    #30;
+    write_paddr = 32'h00111111;
+    
+    //Wait 202 cycles to send the data
+    /*#505;
     pwrite = 1'b0;
-    apb_read_paddr = 1'b1;
-
-    write_paddr = 1'b1;
-  end
-
-  // Clock generator
-  always #5 pclk <= ~pclk;
+    apb_read_paddr = 32'h00111111;
+    write_paddr = 32'h00111111;*/
+    
+end
+  
 endmodule
+
+

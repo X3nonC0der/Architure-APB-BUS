@@ -13,7 +13,7 @@ module GPIO (
     // Write data for APB slave
     input [31:0] pwdata,
     // Address for APB slave
-    input [31:0] paddr,
+    input [4:0] paddr,
     input wire [3:0] PSTRB,
     // Ready signal for APB slave
     output reg pready,
@@ -29,7 +29,7 @@ module GPIO (
   reg [31:0] memory[0:31];
   
   // Address for reading from memory
-  reg [31:0] read_address;
+  reg [4:0] read_address;
 
   // Current state of the state machine
   reg [2:0] CurrentState = IDLE;
@@ -44,13 +44,13 @@ module GPIO (
           // Update the read address
           read_address <= paddr;
           if (PSTRB[0])
-            data1[7:0] <= pwdata[7:0];
+            data1[7:0] <= PWDATA[7:0];
 			    if (PSTRB[1])
-			      data1[15:8] <= pwdata[15:8];
+			      data1[15:8] <= PWDATA[15:8];
 			    if (PSTRB[2])
-				    data1[23:16] <= pwdata[23:16];
+				    data1[23:16] <= PWDATA[23:16];
 			    if (PSTRB[3])
-				    data1[31:24] <= pwdata[31:24];
+				    data1[31:24] <= PWDATA[31:24];
           // Write data to memory
           memory[read_address] <= pwdata;
         end else begin

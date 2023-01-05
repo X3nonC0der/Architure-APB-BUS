@@ -1,21 +1,24 @@
+
 `include "UART_controller.v"
 `include "UART_APB_interface.v"
 
 module UART_APB (
     input [31:0] PADDR,
     input [31:0] PWDATA,
-    output [31:0] PRDATA,
     input PSELx,
     input PENABLE,
     input PWRITE,
     input PRESETn,
+    input wire [3:0] PSTRB,
     output PREADY,
     input PCLK,
     input rx,
+    output [31:0] PRDATA,
     output tx
+    
 );
 
-UART_controller uart (
+UART uart (
     .tx_fifo_dataIn(interface.tx_fifo_dataIn),
     .tx_fifo_writeEn(interface.tx_fifo_writeEn),
     .rx_fifo_readEn(interface.rx_fifo_readEn),
@@ -23,7 +26,7 @@ UART_controller uart (
     .reset(interface.reset),
     .clk(PCLK),
     .baud_final_value(11'd650),
-    .rx(rx),
+    .rx(rx)
     .tx(tx)
 );
 
@@ -33,6 +36,7 @@ UART_APB_interface interface (
     .PRDATA(PRDATA),
     .PSELx(PSELx),
     .PENABLE(PENABLE),
+    .PSTRB(PSTRB),
     .PWRITE(PWRITE),
     .PREADY(PREADY),
     .pclk(PCLK),

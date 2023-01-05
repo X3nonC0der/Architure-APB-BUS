@@ -25,7 +25,7 @@ module APB_Protcol (
   // wire for write data to slaves
   wire [31:0] pwdata;
   // wire for address to slaves
-  wire [31:0] paddr;
+  wire [4:0] paddr;
   // wires for select signals to slaves
   wire PSEL1, PSEL2;
   // wires for data and ready signals from slaves

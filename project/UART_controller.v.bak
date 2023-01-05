@@ -135,20 +135,20 @@ module UART (
         IDLE: begin
           if(tx_start==1) // fifo is not empty
                 begin
-            tx_done_tick <= 1; // set the done tick to 1
-            #15 tx_done_tick <= 0; //Wait 15 cycles and set the dine tick to 0
-            state <= Start; //Set the state to SART state
-            tickCounter <= 0; // Set tick counter to 0 to start counting in the START stste
-            n <= 0; 
-            #5 data = tx_dataIn; //Wait 5 cycles and get the data
+            tx_done_tick <= 1; //
+            #15 tx_done_tick <= 0;
+            state <= Start;
+            tickCounter <= 0;
+            n <= 0;
+            #5 data = tx_dataIn;
           end
         end
-        Start: begin //Start transmission state
-          tx_dataOut <= 0; //set the data out to 0
-          if (tickCounter < 15) begin 
+        Start: begin
+          tx_dataOut <= 0;
+          if (tickCounter < 15) begin
             tickCounter <= tickCounter + 1;
           end else begin
-            tickCounter <= 0; 
+            tickCounter <= 0;
             state <= Data;
             n <= n + 1;
           end

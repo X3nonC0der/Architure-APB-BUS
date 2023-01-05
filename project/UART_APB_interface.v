@@ -1,3 +1,4 @@
+
 `timescale 1ns / 1ns
 module UART_APB_interface (
     input pclk,  // clock input
@@ -7,6 +8,7 @@ module UART_APB_interface (
     input PSELx,  // APB slave select signal
     input PWRITE,  // APB slave write signal
     input PENABLE,  // APB slave enable signal
+    input wire [3:0] PSTRB, // Strobe signal
     input [7:0] rx_fifo_dataOut,  // UART receiver FIFO data output
     input rx_fifo_Full,  // UART receiver FIFO full signal
     input rx_fifo_Empty,  // UART receiver FIFO empty signal
@@ -14,9 +16,9 @@ module UART_APB_interface (
     output reg tx_fifo_writeEn = 0,  // UART transmitter FIFO write enable signal
     output reg rx_fifo_readEn = 0,  // UART receiver FIFO read enable signal
     output [7:0] tx_fifo_dataIn,  // UART transmitter FIFO data input
-    output reg reset = 0  // UART reset signal
+    output reg reset = 0,  // UART reset signal
     output [31:0] PRDATA,  // APB slave read data
-    output reg PREADY = 0,  // APB slave ready signal
+    output reg PREADY = 0  // APB slave ready signal
 );
   // Constant for duration of hold signal
   localparam holdDuration = 15;
@@ -24,6 +26,7 @@ module UART_APB_interface (
   // Assign inputs and outputs
   assign tx_fifo_dataIn = PWDATA;
   assign PRDATA[7:0] = rx_fifo_dataOut;
+  reg [31:0] data1;
 
   always @(posedge pclk, posedge PRESETn) begin
     // Check if UART is selected and reset is active
@@ -40,7 +43,14 @@ module UART_APB_interface (
           // Set PREADY to 1 if the transmitter FIFO is not full
           // Otherwise, set PREADY to 0
           PREADY = ~tx_fifo_Full;
-          
+          if (PSTRB[0])
+            data1[7:0] <= PWDATA[7:0];
+			    if (PSTRB[1])
+			      data1[15:8] <= PWDATA[15:8];
+			    if (PSTRB[2])
+				    data1[23:16] <= PWDATA[23:16];
+			    if (PSTRB[3])
+				    data1[31:24] <= PWDATA[31:24];
           // Assert tx_fifo_writeEn for holdDuration time
           tx_fifo_writeEn = 1;
           #holdDuration tx_fifo_writeEn = 0;
@@ -61,3 +71,4 @@ module UART_APB_interface (
     end
   end
 endmodule
+
