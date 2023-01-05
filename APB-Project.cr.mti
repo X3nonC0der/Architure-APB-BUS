@@ -1,0 +1,80 @@
+{H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Main_TB.v} {1 {vlog -work apb_project {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Main_TB.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module APB_Bridge
+-- Compiling module GPIO
+-- Compiling module UART
+-- Compiling module baud_gen
+-- Compiling module fifo
+-- Compiling module Transmitter
+-- Compiling module Receiver
+-- Compiling module UART_Interface
+-- Compiling module APB_Protcol
+-- Compiling module Testbench
+
+Top level modules:
+	Testbench
+
+} {} {}} {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Protocol.v} {1 {vlog -work apb_project {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Protocol.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module APB_Bridge
+-- Compiling module GPIO
+-- Compiling module UART
+-- Compiling module baud_gen
+-- Compiling module fifo
+-- Compiling module Transmitter
+-- Compiling module Receiver
+-- Compiling module UART_Interface
+-- Compiling module APB_Protcol
+
+Top level modules:
+	APB_Protcol
+
+} {} {}} {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_slave2_TB.v} {1 {vlog -work apb_project {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_slave2_TB.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module APB_Bridge
+-- Compiling module GPIO
+-- Compiling module UART
+-- Compiling module baud_gen
+-- Compiling module fifo
+-- Compiling module Transmitter
+-- Compiling module Receiver
+-- Compiling module UART_Interface
+-- Compiling module APB_Protcol
+-- Compiling module APB_slave2_TB
+
+Top level modules:
+	APB_slave2_TB
+
+} {} {}} {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_bus.v} {1 {vlog -work apb_project {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_bus.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module APB_Bridge
+
+Top level modules:
+	APB_Bridge
+
+} {} {}} {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-controller.v} {1 {vlog -work apb_project {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-controller.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART
+-- Compiling module baud_gen
+-- Compiling module fifo
+-- Compiling module Transmitter
+-- Compiling module Receiver
+
+Top level modules:
+	UART
+
+} {} {}} {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART_APB_interface.v} {1 {vlog -work apb_project {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART_APB_interface.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module UART_Interface
+
+Top level modules:
+	UART_Interface
+
+} {} {}} {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/GPIO.v} {1 {vlog -work apb_project {H:/ASU/4_Senior_1/Term 1/Architure/Project_2/GPIO.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module GPIO
+
+Top level modules:
+	GPIO
+
+} {} {}}

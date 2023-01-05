@@ -1,5 +1,5 @@
 `timescale 1ns / 1ns
-module UART_APB_interface (
+module UART_Interface (
     input pclk,  // clock input
     input PRESETn,  // active-low reset signal
     input [31:0] PADDR,  // APB slave address
@@ -14,12 +14,10 @@ module UART_APB_interface (
     output reg tx_fifo_writeEn = 0,  // UART transmitter FIFO write enable signal
     output reg rx_fifo_readEn = 0,  // UART receiver FIFO read enable signal
     output [7:0] tx_fifo_dataIn,  // UART transmitter FIFO data input
-    output reg reset = 0  // UART reset signal
+    output reg reset = 0,  // UART reset signal
     output [31:0] PRDATA,  // APB slave read data
-    output reg PREADY = 0,  // APB slave ready signal
+    output reg PREADY = 0  // APB slave ready signal
 );
-  // Constant for duration of hold signal
-  localparam holdDuration = 15;
 
   // Assign inputs and outputs
   assign tx_fifo_dataIn = PWDATA;
@@ -31,7 +29,7 @@ module UART_APB_interface (
       // Assert reset signal
       reset = 1;
       // Hold reset signal for holdDuration time
-      #holdDuration reset = 0;
+      #15 reset = 0;
     end 
     else if (PSELx && PENABLE) begin
       // Check if this is a write or read transaction
@@ -39,20 +37,18 @@ module UART_APB_interface (
         1: begin
           // Set PREADY to 1 if the transmitter FIFO is not full
           // Otherwise, set PREADY to 0
+          // Assert tx_fifo_writeEn for 15
           PREADY = ~tx_fifo_Full;
-          
-          // Assert tx_fifo_writeEn for holdDuration time
           tx_fifo_writeEn = 1;
-          #holdDuration tx_fifo_writeEn = 0;
+          #15 tx_fifo_writeEn = 0;
         end
         0: begin
           // Set PREADY to 1 if the receiver FIFO is not empty
           // Otherwise, set PREADY to 0
+          // Assert rx_fifo_readEn for 15
           PREADY = ~rx_fifo_Empty;
-
-          // Assert rx_fifo_readEn for holdDuration time
           rx_fifo_readEn = 1;
-          #holdDuration rx_fifo_readEn = 0;
+          #15 rx_fifo_readEn = 0;
         end
       endcase
     end 

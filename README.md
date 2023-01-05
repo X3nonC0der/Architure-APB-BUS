@@ -10,7 +10,6 @@ The APB is a simple bus used to connect peripherals to the processor in a system
 
 The GPIO controller allows the processor to control and read the state of a set of digital input/output pins. The UART controller is used to send and receive data serially over a communication channel.
 
-The APB bus, GPIO controller, and UART controller are all implemented in Verilog. They have been tested on an FPGA and are functional.
 
 ## Files
 The project includes the following files:
@@ -18,17 +17,7 @@ The project includes the following files:
 - `APB_BUS.v`: Implementation of the APB bus.
 - `APB_Protocol.v`: Implementation of the APB protocol.
 - `GPIO.v`: Implementation of the GPIO module.
-- `UART-APB.v`: Implementation of the UART-APB module.
 - `UART-APB-interface.v`: Implementation of the UART-APB interface.
 - `UART-controller.v`: Implementation of the UART controller.
 - `APB_MAIN_TB.v`: Testbench for the APB bus.
-
-
-## Screenshots
-### GPIO Module
-![GPIO-APB Module](screenshots/waveform-gpio.png)
-
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 

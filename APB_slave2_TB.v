@@ -25,7 +25,6 @@ module APB_slave2_TB;
   reg rx = 1;
   // Wire to output the read data from the APB slave peripheral
   wire [31:0] apb_read_data_out;
-  wire [3:0] PSTRB;
   
 
   // Instantiate the APB Protocol module
@@ -40,7 +39,6 @@ module APB_slave2_TB;
       write_data,
       Psel,
       apb_read_data_out,
-      PSTRB,
       rx
   );
 // Clock generator
@@ -73,17 +71,18 @@ end
     Psel = 2'b10;
     transfer = 1'b1;
     // Wait for the APB protocol module to stabilize
-    #202;
+    #505;
     // Write a value to the UART peripheral's memory
     penable = 1'b1;
     pwrite = 1'b1;
     write_data = 32'hDEAD2023;
     write_paddr = 32'h00111111;
+    
     //Wait 202 cycles to send the data
-    #202;
+    /*#505;
     pwrite = 1'b0;
     apb_read_paddr = 32'h00111111;
-    write_paddr = 32'h00111111;
+    write_paddr = 32'h00111111;*/
     
 end
   

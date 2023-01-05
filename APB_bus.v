@@ -46,26 +46,24 @@ module APB_Bridge (
 
   // States for the state machine
   localparam IDLE = 2'b00, SETUP = 2'b01, Access = 2'b10;
+
   // Current state of the state machine
   reg [2:0] CurrentState = IDLE;
+
   // Next state of the state machine
   reg [2:0] NextState = IDLE;
 
-  // Set the select signals for the slave peripherals based on the Psel input
   always @(Psel) begin
     case (Psel)
       1: begin
-        // Select the first slave peripheral
         PSEL1 <= 1;
         PSEL2 <= 0;
       end
       2: begin
-        // Select the second slave peripheral
         PSEL1 <= 0;
         PSEL2 <= 1;
       end
       default: begin
-        // No slave peripherals selected
         PSEL1 <= 0;
         PSEL2 <= 0;
       end
@@ -73,7 +71,7 @@ module APB_Bridge (
   end
 
   // State machine for the APB bridge
-  always @(CurrentState, transfer_Master, pready_slave) begin
+  always @(posedge pclk) begin
     // Set the write signal to the value coming from the master
     pwrite <= pwrite_Master;
     case (CurrentState)
@@ -100,18 +98,22 @@ module APB_Bridge (
         end
       end
       Access: begin
-        if (!PSEL1 && !PSEL2) begin
+        // In the access state, the enable signal to the slave is asserted
+        penable = 1;
+        if (pready_slave) begin
           NextState <= IDLE;
+        end
+        if (pwrite_Master) begin
+          apb_read_data <= 32'h00000000;
         end else begin
-          penable = 1;
-          if (pready_slave) begin
-            // Read Data from slave output to read_out 
-            NextState <= SETUP;
-            if (!pwrite_Master) begin
-              apb_read_data <= prdata;
-            end
+          apb_read_data <= prdata;
+        end
 
-          end
+        if (transfer_Master) begin
+          NextState <= SETUP;
+        end
+        if (Reset) begin
+          NextState <= IDLE;
         end
       end
     endcase

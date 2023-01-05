@@ -1,0 +1,208 @@
+m255
+K3
+13
+cModel Technology
+Z0 dH:\ASU\4_Senior_1\Term 1\Architure\Project
+vAPB_Bridge
+Z1 !s100 oDIzSR7]]HS=HzFe_ImgH3
+Z2 IR4O1F5=AIXKPa_23]:eTz0
+Z3 VR67BSPKJ>Ga5k]l[I269R0
+Z4 dH:\ASU\4_Senior_1\Term 1\Architure\Project_2
+Z5 w1672933742
+Z6 FAPB_bus.v
+Z7 8H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_slave2_TB.v
+Z8 FH:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_slave2_TB.v
+L0 1
+Z9 OV;L;10.1d;51
+r1
+31
+Z10 !s108 1672936580.176000
+Z11 !s107 UART_APB_interface.v|UART-controller.v|GPIO.v|APB_bus.v|APB_Protocol.v|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_slave2_TB.v|
+Z12 !s90 -reportprogress|300|-work|apb_project|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_slave2_TB.v|
+Z13 o-work apb_project -O0
+Z14 n@a@p@b_@bridge
+!i10b 1
+!s85 0
+!s101 -O0
+vAPB_MAIN_TB
+Z15 Id=z1_];=d3o1ZI::U65Ta3
+Z16 Vb]EO6`60O^930o]2RGCXI3
+R4
+Z17 w1672934004
+Z18 8H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Main_TB.v
+Z19 FH:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Main_TB.v
+L0 5
+R9
+r1
+31
+Z20 !s108 1672934011.982000
+Z21 !s107 UART_APB_interface.v|UART-controller.v|UART-APB.v|GPIO.v|APB_bus.v|APB_Protocol.v|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Main_TB.v|
+Z22 !s90 -reportprogress|300|-work|apb_project|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Main_TB.v|
+R13
+Z23 n@a@p@b_@m@a@i@n_@t@b
+Z24 !s100 08ZHh>A2zJ8OdDBNTlcE81
+!i10b 1
+!s85 0
+!s101 -O0
+vAPB_Protcol
+Z25 IlNmX@bbQO60;XFZ^_CaGN1
+Z26 V0Om0n:XRV1J3[@@^1XgaH3
+R4
+Z27 w1672936521
+Z28 FAPB_Protocol.v
+R7
+R8
+L0 6
+R9
+r1
+31
+R10
+R11
+R12
+R13
+Z29 n@a@p@b_@protcol
+Z30 !s100 VUaTVKJ[LEV2Zd;;RX<4g1
+!i10b 1
+!s85 0
+!s101 -O0
+vAPB_slave2_TB
+Z31 !s100 Bz=b;jmSGQQN`D2HQ8W0G3
+Z32 IF?QO;0B22_83:^6G`4:IE1
+Z33 VC>PgT5>lm0e`bX1hVWhVQ1
+R4
+Z34 w1672927974
+R7
+R8
+L0 5
+R9
+r1
+31
+R10
+R11
+R12
+R13
+Z35 n@a@p@b_slave2_@t@b
+!i10b 1
+!s85 0
+!s101 -O0
+vGPIO
+Z36 IU4XhC]>TDNhSFfKULDC0S2
+Z37 VRO8P1TDF9NS2?Ez?Fkzh11
+R4
+Z38 w1672929209
+Z39 8H:/ASU/4_Senior_1/Term 1/Architure/Project_2/GPIO.v
+Z40 FH:/ASU/4_Senior_1/Term 1/Architure/Project_2/GPIO.v
+L0 1
+R9
+r1
+31
+R13
+Z41 n@g@p@i@o
+Z42 !s100 ?U<2?hVWPbCcdnMeGfAO^0
+Z43 !s108 1672936580.389000
+Z44 !s107 H:/ASU/4_Senior_1/Term 1/Architure/Project_2/GPIO.v|
+Z45 !s90 -reportprogress|300|-work|apb_project|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/GPIO.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vTestbench
+Z46 I>zoe1hQdJO5E1Y>k5fOUk3
+Z47 VGdUiEZgaMiVEi@bgHJeE13
+R4
+Z48 w1672936569
+R18
+R19
+L0 5
+R9
+r1
+31
+Z49 !s108 1672936579.776000
+Z50 !s107 UART_APB_interface.v|UART-controller.v|GPIO.v|APB_bus.v|APB_Protocol.v|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/APB_Main_TB.v|
+R22
+R13
+Z51 n@testbench
+Z52 !s100 AeCDUXdXSP^C=KO@[jTlz0
+!i10b 1
+!s85 0
+!s101 -O0
+vUART
+!i10b 1
+!s100 A3Fh@gBig3R^?UDoTCAH72
+IS:Rgh53CIDd=LPfSC9MlO0
+Z53 VEl;f8oi[E=LcgDNIW6elP1
+R4
+R34
+8H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-controller.v
+FH:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-controller.v
+L0 2
+R9
+r1
+!s85 0
+31
+!s108 1672936580.553000
+!s107 H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-controller.v|
+!s90 -reportprogress|300|-work|apb_project|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-controller.v|
+!s101 -O0
+R13
+Z54 n@u@a@r@t
+vUART_APB
+Z55 IbI7GHI?CczC`Oj?S_F0DN3
+Z56 VY5OF:In^G_7aHKK`ce9BN2
+R4
+Z57 w1672929399
+Z58 8H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-APB.v
+Z59 FH:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-APB.v
+L0 4
+R9
+r1
+31
+Z60 !s108 1672935505.918000
+Z61 !s107 UART_APB_interface.v|UART-controller.v|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-APB.v|
+Z62 !s90 -reportprogress|300|-work|apb_project|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART-APB.v|
+R13
+Z63 n@u@a@r@t_@a@p@b
+Z64 !s100 P@A`>Y[_AYm^oAQQLgI;;0
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_APB_interface
+Z65 Idge3dBX526;JTT267<lCN1
+Z66 VDHhJZDca:gS>g9meFJ5PE0
+R4
+R57
+Z67 FUART_APB_interface.v
+R58
+R59
+L0 2
+R9
+r1
+31
+R60
+R61
+R62
+R13
+Z68 n@u@a@r@t_@a@p@b_interface
+Z69 !s100 L[a8fFcoZ59QlBIZ;goQS0
+!i10b 1
+!s85 0
+!s101 -O0
+vUART_Interface
+Z70 I6Ck9IZKaf11HK[V`[FfhM3
+Z71 V?gI`]Z04eKTk_8^QOo>Iz2
+R4
+Z72 w1672936029
+Z73 8H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART_APB_interface.v
+Z74 FH:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART_APB_interface.v
+L0 2
+R9
+r1
+31
+R13
+Z75 n@u@a@r@t_@interface
+!i10b 1
+Z76 !s100 Q0]48DJdX49_QgV:PHzRG1
+!s85 0
+Z77 !s108 1672936580.471000
+Z78 !s107 H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART_APB_interface.v|
+Z79 !s90 -reportprogress|300|-work|apb_project|H:/ASU/4_Senior_1/Term 1/Architure/Project_2/UART_APB_interface.v|
+!s101 -O0
