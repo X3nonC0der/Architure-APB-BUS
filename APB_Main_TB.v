@@ -14,9 +14,9 @@ module APB_MAIN_TB;
   // Reset signal for the APB protocol
   reg Reset;
   // Address of the memory location to be written to
-  reg [31:0] write_paddr;
+  reg [4:0] write_paddr;
   // Address of the memory location to be read from
-  reg [3:0] apb_read_paddr;
+  reg [4:0] apb_read_paddr;
   // Data to be written to the specified memory location
   reg [31:0] write_data;
   // Select signal for the APB slave peripheral
@@ -25,9 +25,6 @@ module APB_MAIN_TB;
   reg rx = 1;
   // Wire to output the read data from the APB slave peripheral
   wire [31:0] apb_read_data_out;
-  // Wire to output the 
-  wire [3:0] PSTRB;
-  reg tx; 
 
   // Instantiate the APB Protocol module
   APB_Protcol APB_Protcol_1 (
@@ -41,14 +38,9 @@ module APB_MAIN_TB;
       write_data,
       Psel,
       apb_read_data_out,
-      PSTRB,
-      rx,
-      tx
+      rx
   );
-// Clock generator
-  always begin
-    #5 pclk <= ~pclk;
-  end
+
   initial begin
     // Initialize input signals
     pclk = 1'b0;
@@ -60,7 +52,6 @@ module APB_MAIN_TB;
     apb_read_paddr = 32'h00000000;
     write_data = 32'h00000000;
     Psel = 2'b00;
-    
 
     // Wait for the APB protocol module to reset
     // Assert the reset signal
@@ -88,5 +79,6 @@ module APB_MAIN_TB;
     write_paddr = 1'b1;
   end
 
-  
+  // Clock generator
+  always #5 pclk <= ~pclk;
 endmodule
