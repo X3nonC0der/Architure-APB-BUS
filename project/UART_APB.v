@@ -26,7 +26,7 @@ UART uart (
     .reset(interface.reset),
     .clk(PCLK),
     .baud_final_value(11'd650),
-    .rx(rx)
+    .rx(rx),
     .tx(tx)
 );
 
