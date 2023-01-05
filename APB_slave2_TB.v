@@ -26,8 +26,6 @@ module APB_slave2_TB;
   // Wire to output the read data from the APB slave peripheral
   wire [31:0] apb_read_data_out;
   wire [3:0] PSTRB;
-  //reg tx_fifo_write_en;
-  //reg rx_fifo_read_en;
   
 
   // Instantiate the APB Protocol module
@@ -62,8 +60,7 @@ end
     apb_read_paddr = 32'h00000000;
     write_data = 32'h00000000;
     Psel = 2'b00;
-    //tx_fifo_write_en = 0;
-    //rx_fifo_read_en = 0;
+    
     // Wait for the APB protocol module to reset
     // Assert the reset signal
     // Reset = 1'b1;
@@ -76,38 +73,20 @@ end
     Psel = 2'b10;
     transfer = 1'b1;
     // Wait for the APB protocol module to stabilize
-    #30;
+    #202;
     // Write a value to the UART peripheral's memory
     penable = 1'b1;
     pwrite = 1'b1;
     write_data = 32'hDEAD2023;
     write_paddr = 32'h00111111;
-    #30;
+    //Wait 202 cycles to send the data
+    #202;
     pwrite = 1'b0;
     apb_read_paddr = 32'h00111111;
     write_paddr = 32'h00111111;
     
 end
-  /*UART uart (
-    .rx_fifo_readEn(rx_fifo_read_en),
-    .reset(Reset),
-    .clk(pclk),
-    .baud_final_value(11'd650),
-    .rx(rx),
-    .tx(tx)
-); 
-UART_APB uart_apb(
-    .PWDATA(write_data),
-    .PCLK(pclk),
-    .PSELx(Psel),
-    .PRESETn(Reset),
-    .PWRITE(pwrite)
-); 
-UART_APB_interface uart_interface(
-  .PWDATA(write_data),
-  .pclk(pclk)
-
-);*/
+  
 endmodule
 
 
